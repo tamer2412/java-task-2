@@ -4,45 +4,80 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Scanner in= new Scanner(System.in);
-        int x =0;
+        int x = 0;
         ArrayList<Train> Train=new ArrayList<>();
         Train.add(new Train("Cena", 1, 5));
         Train.add(new Train("The Rock", 2, 4));
         Train.add(new Train("James", 3, 1));
-        System.out.println("1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit\n");
+        System.out.println("1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit");
         while (x!=4){
             x = in.nextInt();
             switch (x){
                 case (1):
                     boolean b = false;
-                    System.out.println("Input name:");
+                    System.out.println("Input your name:");
                     String name=in.next();
-                    System.out.println("Input car(from 1 to 10):");
-                    int car = in.nextInt();
-                    while(car > 10){
-                        System.out.println("This car does not exist");
-                        car=in.nextInt();
-                    }
-                    System.out.println("Input seat(from 1 to 20):");
-                    int seat=in.nextInt();
-                    while(seat>20){
-                        System.out.println("This seat does not exist");
-                        seat=in.nextInt();
-                    }
-                    for(int i=0;i<Train.size();++i){
-                        if(car==Train.get(i).getCar()){
-                            if (seat == Train.get(i).getSeat()){
-                                System.out.println("This seat is occupied");
-                                b = true;
-                                System.out.println("1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit");
-                                break;
+                    System.out.println("Choose class of car:\n" + "1. Lux(10)\n" + "2. Coupe(20)\n" + "3. Placscart(30)");
+                    int choice = in.nextInt();
+                    switch (choice) {
+                        case (1):
+                            System.out.println("Choose car:");
+                        int car = in.nextInt();
+                        while (car > 10) {
+                            System.out.println("This car does not exist, try again");
+                            car = in.nextInt();
+                        }
+                        System.out.println("Input seat(from 1 to 20):");
+                        int seat = in.nextInt();
+                        while (seat > 20) {
+                            System.out.println("This seat does not exist, try again");
+                            seat = in.nextInt();
+                        }
+                        for (int i = 0; i < Train.size(); ++i) {
+                            if (car == Train.get(i).getCar()) {
+                                if (seat == Train.get(i).getSeat()) {
+                                    System.out.println("This seat is occupied");
+                                    b = true;
+                                    System.out.println("1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit");
+                                    break;
+                                }
                             }
                         }
+                        if (!b) {
+                            Train.add(new Train(name, car, seat));
+                            System.out.println("The place has been successfully booked\n" + "1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit");
+                        }
+                        break;
+                        case (2):
+                            System.out.println("Choose car:");
+                            car = in.nextInt();
+                            while (car > 20) {
+                                System.out.println("This car does not exist, try again");
+                                car = in.nextInt();
+                            }
+                            System.out.println("Input seat(from 1 to 20):");
+                            seat = in.nextInt();
+                            while (seat > 20) {
+                                System.out.println("This seat does not exist, try again");
+                                seat = in.nextInt();
+                            }
+                            for (int i = 0; i < Train.size(); ++i) {
+                                if (car == Train.get(i).getCar()) {
+                                    if (seat == Train.get(i).getSeat()) {
+                                        System.out.println("This seat is occupied");
+                                        b = true;
+                                        System.out.println("1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit");
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!b) {
+                                Train.add(new Train(name, car, seat));
+                                System.out.println("The place has been successfully booked\n" + "1. To add\n" + "2. To delete\n" + "3. Show all\n" + "4. Exit");
+                            }
+                            break;
+
                     }
-                    if(!b) {
-                        Train.add(new Train(name, car, seat));
-                    }
-                    break;
                 case(2):
                     System.out.println("Input car:");
                     int dcar=in.nextInt();
@@ -76,7 +111,7 @@ public class Main {
                             break;
                         }
                     }
-                    break;
+
                 case (3):
                     for(Train all: Train){
                         System.out.print(all.getName()+" ");
